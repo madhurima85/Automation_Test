@@ -882,6 +882,105 @@ public class GurukulaTest {
 				.click(); /* Click on confirm Delete */
 
 		System.out.println("Staff is deleted");
+		
+		// @@@ Following is Negative Test Case for Branch @@@ //
+		
+
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//span[text()='Entities']"))
+				.click(); /* click Entities */
+		driver.findElement(By.xpath("//span[text()='Branch']"))
+				.click(); /* click Branch */
+
+		driver.findElement(By.xpath("//div[@class='col-md-4']/button"))
+				.click(); /* Create a New Branch */
+		Thread.sleep(3000);
+
+		driver.findElement(By.name("name")).sendKeys("A"); /* A */
+
+		if (driver.getPageSource().contains("This field is required to be at least 5 characters.")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter minimum 5 characters in Branchname");
+		}
+		
+		Thread.sleep(2000);
+		driver.findElement(By.name("name")).sendKeys("12345"); /* A12345 */
+
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter minimum 5 characters of a-z or/and A-Z in Branchname");
+		}
+		Thread.sleep(2000);
+		driver.findElement(By.name("code")).sendKeys("A"); /*A*/
+		
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter minimum 2 characters in Code");
+		}
+		Thread.sleep(2000);
+		
+		driver.findElement(By.name("code")).clear();
+		
+		driver.findElement(By.name("code")).sendKeys("a2"); /*a2 */
+		
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to write only characters A-Z or/and 0-9 numbers in Code");
+		}
+		
+		driver.findElement(By.cssSelector("button.btn.btn-default"))
+		.click(); /* Cancel the Edit screen */
+		
+		// @@@ Following is Negative Test Case for Staff @@@ //
+		
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//span[text()='Entities']"))
+				.click(); /* click Entities */
+		driver.findElement(By.xpath("//span[text()='Staff']"))
+				.click(); /* click staff */
+		
+		Thread.sleep(2000);
+
+		driver.findElement(By.cssSelector("button.btn.btn-primary"))
+		.click(); /* Create a New Staff */
+		Thread.sleep(2000);
+
+		driver.findElement(By.name("name")).sendKeys("1"); /* 1 */
+
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter characters of a-z or/and A-Z in Staffname");
+		}
+		
+		driver.findElement(By.name("name")).clear();
+		Thread.sleep(2000);
+		driver.findElement(By.name("name")).sendKeys("12345"); /* 12345 */
+
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter characters of a-z or/and A-Z in Staffname");
+		}
+		driver.findElement(By.name("name")).clear();
+		Thread.sleep(2000);
+		driver.findElement(By.name("name")).sendKeys("c2"); /* c2 */
+
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter characters of a-z or/and A-Z in Staffname");
+		}
+		driver.findElement(By.name("name")).clear();
+		Thread.sleep(2000);
+		driver.findElement(By.name("name")).sendKeys("T5"); /* T5 */
+
+		if (driver.getPageSource().contains("This field should follow pattern")) /* Verify the error message*/
+		{
+			System.out.println("Have to enter characters of a-z or/and A-Z in Staffname");
+		}
+		driver.findElement(By.cssSelector("button.btn.btn-default"))
+		.click(); /* Cancel the Edit screen */
+
 
 		// @@@ Following is Test Case to Log Out @@@ //
 
